@@ -6,10 +6,14 @@ public class Rotation : MonoBehaviour {
     public float sidewaySpeed = 0.5F;
     public float accelerationSpeed = 0.5F;
     public float rotateSpeed = 0.5F;
+    private Quaternion baseQuaternion;
+    public GameObject mainForm;
 
 	// Use this for initialization
 	void Start () {
-	
+
+        Debug.Log(mainForm);
+        baseQuaternion = mainForm.transform.rotation;
 	}
 	
 	// Update is called once per frame
@@ -17,23 +21,20 @@ public class Rotation : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Q))
         {
-            Vector3 moveVector = new Vector3(rotateSpeed, 0, 0);
+            Vector3 moveVector = new Vector3(rotateSpeed, rotateSpeed, rotateSpeed);
 
             transform.Rotate(moveVector);
 
-            moveVector = new Vector3(0, -accelerationSpeed, 0);
-            transform.Translate(moveVector);
-
+          
            
         }
 
         if (Input.GetKey(KeyCode.E))
         {
-            Vector3 moveVector = new Vector3(-rotateSpeed, 0, 0);
+            Vector3 moveVector = new Vector3(-rotateSpeed, -rotateSpeed, -rotateSpeed);
             transform.Rotate(moveVector);
 
-            moveVector = new Vector3(0, +accelerationSpeed, 0);
-            transform.Translate(moveVector);
+           
 
         }
 
@@ -64,6 +65,14 @@ public class Rotation : MonoBehaviour {
         {
             Vector3 rotationVector = new Vector3(0, accelerationSpeed, 0);
             transform.Rotate(rotationVector);
+        }
+
+        //Reset
+        if (Input.GetKey(KeyCode.Tab)){
+
+            mainForm.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
+            mainForm.transform.rotation = baseQuaternion;
+           
         }
 
 	}
