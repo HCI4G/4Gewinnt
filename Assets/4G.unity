@@ -585,7 +585,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1096,6 +1096,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 108604, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
+      propertyPath: m_Name
+      value: Sphere
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
   m_IsPrefabParent: 0
@@ -1523,6 +1527,7 @@ GameObject:
   - 92: {fileID: 868945019}
   - 124: {fileID: 868945018}
   - 81: {fileID: 868945017}
+  - 114: {fileID: 868945022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1595,6 +1600,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &868945022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868945016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce16b5f29f254e48b05fc6d1636a0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sidewaySpeed: .5
+  accelerationSpeed: .5
+  rotateSpeed: .5
 --- !u!1 &877125229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,7 +2247,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3858,7 +3877,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 427538, guid: e237a95622d22474692c0f1b9cbf14f5, type: 2}
       propertyPath: m_LocalPosition.y

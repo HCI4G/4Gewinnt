@@ -14,7 +14,7 @@ GameObject:
   - 23: {fileID: 2384046}
   - 114: {fileID: 11400972}
   m_Layer: 0
-  m_Name: SphereClean
+  m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
