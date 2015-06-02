@@ -68,12 +68,13 @@ public class Rotation : MonoBehaviour {
         }
 
         //Reset
-        if (Input.GetKey(KeyCode.Tab)){
+        if (Input.GetKey(KeyCode.Tab) | Input.GetMouseButton(2)){
 
             mainForm.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
             mainForm.transform.rotation = baseQuaternion;
            
         }
+
 
 	}
 
