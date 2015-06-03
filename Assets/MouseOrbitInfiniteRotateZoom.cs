@@ -18,7 +18,9 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
 
     public Vector3 position;
 
-    private bool isActivated;
+    private bool isActivatedLeftMouse;
+
+    private bool isActivatedRightMouse;
 
 
 
@@ -50,13 +52,12 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
     {
 
 
-
         // only update if the mousebutton is held down
 
         if (Input.GetMouseButtonDown(1))
         {
 
-            isActivated = true;
+            isActivatedRightMouse = true;
 
         }
 
@@ -65,13 +66,31 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
 
-            isActivated = false;
+            isActivatedRightMouse = false;
+
+        }
+
+        // only update if the mousebutton is held down
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            isActivatedLeftMouse = true;
+
+        }
+
+        // if mouse button is let UP then stop rotating camera
+
+        if (Input.GetMouseButtonUp(0))
+        {
+
+            isActivatedLeftMouse = false;
 
         }
 
 
 
-        if (target && isActivated)
+        if (target && isActivatedLeftMouse)
         {
 
             //  get the distance the mouse moved in the respective direction
@@ -85,12 +104,49 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
             // when mouse moves left and right we actually rotate around local y axis	
 
             Vector3 newPosition = target.position;
-            newPosition.Set(10f, 10f, 20f);
+            newPosition.Set(1.1f*x, 1.1f*x, 1.1f*x);
+
+            //transform.RotateAround(newPosition, transform.up, x);
+
+            //transform.RotateAround(newPosition, transform, x);
+            transform.Rotate(newPosition);
+
+
+            // when mouse moves up and down we actually rotate around the local x axis	
+
+           // transform.RotateAround(newPosition, transform.right, y);
+
+
+
+            // reset back to 0 so it doesn't continue to rotate while holding the button
+
+            x = 0;
+
+            y = 0;
+            return;
+
+        }
+
+
+        if (target && isActivatedRightMouse)
+        {
+
+            //  get the distance the mouse moved in the respective direction
+
+            x += Input.GetAxis("Mouse X") * xSpeed;
+
+            y -= Input.GetAxis("Mouse Y") * ySpeed;
+
+
+
+            // when mouse moves left and right we actually rotate around local y axis	
+
+            Vector3 newPosition = target.position;
+            newPosition.Set(8f, 8f, 8f);
 
             transform.RotateAround(newPosition, transform.up, x);
 
-
-
+           
             // when mouse moves up and down we actually rotate around the local x axis	
 
             transform.RotateAround(newPosition, transform.right, y);
@@ -102,10 +158,10 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
             x = 0;
 
             y = 0;
+            return;
 
         }
-        else
-        {
+        
 
             // see if mouse wheel is used 	
 
@@ -137,7 +193,7 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
 
             }
 
-        }
+       
        
     }
 
