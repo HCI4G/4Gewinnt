@@ -84,13 +84,16 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
 
             // when mouse moves left and right we actually rotate around local y axis	
 
-            transform.RotateAround(target.position, transform.up, x);
+            Vector3 newPosition = target.position;
+            newPosition.Set(10f, 10f, 20f);
+
+            transform.RotateAround(newPosition, transform.up, x);
 
 
 
             // when mouse moves up and down we actually rotate around the local x axis	
 
-            transform.RotateAround(target.position, transform.right, y);
+            transform.RotateAround(newPosition, transform.right, y);
 
 
 
