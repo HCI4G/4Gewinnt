@@ -116,5 +116,30 @@ public class KinectPointController : MonoBehaviour, KinectGestures.GestureListen
 		}
 	}
 
-    
+
+
+    public void UserDetected(uint userId, int userIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void UserLost(uint userId, int userIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GestureInProgress(uint userId, int userIndex, KinectGestures.Gestures gesture, float progress, Kinect.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool GestureCompleted(uint userId, int userIndex, KinectGestures.Gestures gesture, Kinect.NuiSkeletonPositionIndex joint, Vector3 screenPos)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool GestureCancelled(uint userId, int userIndex, KinectGestures.Gestures gesture, Kinect.NuiSkeletonPositionIndex joint)
+    {
+        throw new NotImplementedException();
+    }
 }
