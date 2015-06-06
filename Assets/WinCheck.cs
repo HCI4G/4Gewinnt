@@ -10,6 +10,15 @@ public class WinCheck : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        if (Application.HasProLicense())
+        {
+            Debug.Log("Unity is pro version.");
+        }
+        else
+        {
+            Debug.Log("Unity is free version.");
+        }
+
         spheres = new GameObject[4,4,4];       
         int counter = 0;
 

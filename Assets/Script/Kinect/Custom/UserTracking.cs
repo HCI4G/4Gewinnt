@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Kinect;
 
-public class KinectSensor : MonoBehaviour, KinectInterface {
+public class UserTracking : MonoBehaviour, KinectInterface {
 	//make KinectSensor a singleton (sort of)
 	private static KinectInterface instance;
     public static KinectInterface Instance
@@ -73,8 +73,6 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	private IntPtr colorStreamHandle;
 	private IntPtr depthStreamHandle;
 	[HideInInspector]
-
-    //Servers for data normalization
 	private NuiTransformSmoothParameters smoothParameters = new NuiTransformSmoothParameters();
 	
 	float KinectInterface.getSensorHeight() {
@@ -90,7 +88,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	
 	void Awake()
 	{
-		if (KinectSensor.instance != null)
+		if (UserTracking.instance != null)
 		{
 			Debug.Log("There should be only one active instance of the KinectSensor component at at time.");
             throw new Exception("There should be only one active instance of the KinectSensor component at a time.");
@@ -140,7 +138,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			NativeMethods.NuiCameraSetAngle(kinectAngle);
 			
 			DontDestroyOnLoad(gameObject);
-			KinectSensor.Instance = this;
+			UserTracking.Instance = this;
 			NativeMethods.NuiSetDeviceStatusCallback(new NuiStatusProc(), IntPtr.Zero);
 		}
 		
@@ -149,12 +147,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			Debug.Log(e.Message);
 		}
 	}
-
-    void Update()
-    {
-        
-    }
-
+	
 	void LateUpdate()
 	{
 		updatedSkeleton = false;
@@ -186,7 +179,6 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			smoothParameters.fJitterRadius = jitterRadius;
 			smoothParameters.fMaxDeviationRadius = maxDeviationRadius;
 			smoothParameters.fPrediction = prediction;
-            Debug.Log("KinectInterface: "+ smoothParameters);
 			hr = NativeMethods.NuiTransformSmooth(ref skeletonFrame,ref smoothParameters);
 		}
 		return newSkeleton;
@@ -334,3 +326,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	}
 	
 }
+
+
+	
+

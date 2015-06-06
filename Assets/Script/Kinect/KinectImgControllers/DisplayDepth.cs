@@ -30,7 +30,7 @@ public class DisplayDepth : MonoBehaviour {
 		{
 			img[pix].r = (byte)(depthBuf[pix] / 32);
 			img[pix].g = (byte)(depthBuf[pix] / 32);
-			img[pix].b = (byte)(depthBuf[pix] / 32);
+			img[pix].b = (byte)(depthBuf[pix] / 32);         
 		}
 		return img;
 	}

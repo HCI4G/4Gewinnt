@@ -95,7 +95,7 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
 
             //  get the distance the mouse moved in the respective direction
 
-            x += Input.GetAxis("Mouse X") * xSpeed;
+            //x += Input.GetAxis("Mouse X") * xSpeed;
 
             y -= Input.GetAxis("Mouse Y") * ySpeed;
 
@@ -104,8 +104,9 @@ public class MouseOrbitInfiniteRotateZoom : MonoBehaviour
             // when mouse moves left and right we actually rotate around local y axis	
 
             Vector3 newPosition = target.position;
-            newPosition.Set(1.1f*x, 1.1f*x, 1.1f*x);
+            //newPosition.Set(1.1f*-x, 1.1f*-x, 1.1f*-x);
 
+            newPosition.Set(1.1f * -y, 1.1f * -y, 1.1f * -y);
             //transform.RotateAround(newPosition, transform.up, x);
 
             //transform.RotateAround(newPosition, transform, x);
