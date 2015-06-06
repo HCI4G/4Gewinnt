@@ -11,6 +11,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class KinectPointController : MonoBehaviour, KinectGestures.GestureListenerInterface {
 	
@@ -114,4 +115,6 @@ public class KinectPointController : MonoBehaviour, KinectGestures.GestureListen
 			}
 		}
 	}
+
+    
 }
