@@ -12,7 +12,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class KinectPointController : MonoBehaviour {
+public class KinectPointController : MonoBehaviour, KinectGestures.GestureListenerInterface {
 	
 	//Assignments for a bitmask to control which bones to look at and which to ignore
 	public enum BoneMask
@@ -79,6 +79,7 @@ public class KinectPointController : MonoBehaviour {
 	
 	public int player;
 	public BoneMask Mask = BoneMask.All;
+    
 	
 	public float scale = 1.0f;
 	
