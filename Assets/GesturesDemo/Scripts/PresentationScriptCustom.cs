@@ -42,6 +42,7 @@ public class PresentationScriptCustom : MonoBehaviour
         // delay the first slide
         slideWaitUntil = Time.realtimeSinceStartup + slideChangeAfterDelay;
 
+
         targetRotation = transform.rotation;
         isSpinning = false;
 
