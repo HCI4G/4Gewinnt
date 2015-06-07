@@ -38,14 +38,22 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 	{
 		// detect these user specific gestures
 		KinectManager manager = KinectManager.Instance;
+
+        Debug.Log(manager + " is enabled.");
+        Debug.Log(manager + " tries detecting.");
 		
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
 
+
 		if(GestureInfo != null)
 		{
 			GestureInfo.GetComponent<GUIText>().text = "Swipe left or right to change the slides.";
-		}
+        }
+        else
+        {
+            Debug.Log("GestureInfo is null");
+        }
 	}
 	
 	public void UserLost(uint userId, int userIndex)

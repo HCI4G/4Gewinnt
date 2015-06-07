@@ -31,7 +31,7 @@ public class PresentationScript : MonoBehaviour
 	
 	void Start() 
 	{
-        
+       
 		// hide mouse cursor
 		Cursor.visible = false;
 		
@@ -55,13 +55,15 @@ public class PresentationScript : MonoBehaviour
 		
 		// get the gestures listener
 		gestureListener = Camera.main.GetComponent<GestureListener>();
+       
 	}
 	
 	void Update() 
 	{
-        
+
 		// dont run Update() if there is no user
 		KinectManager kinectManager = KinectManager.Instance;
+       
 		if(autoChangeAlfterDelay && (!kinectManager || !kinectManager.IsInitialized() || !kinectManager.IsUserDetected()))
 			return;
        

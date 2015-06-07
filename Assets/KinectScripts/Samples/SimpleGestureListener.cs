@@ -13,17 +13,16 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	
 	public void UserDetected(uint userId, int userIndex)
 	{
+        
 		// as an example - detect these user specific gestures
 		KinectManager manager = KinectManager.Instance;
 
 		manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
 		manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
-
-//		manager.DetectGesture(userId, KinectGestures.Gestures.Push);
-//		manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
-		
-//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
-//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
+		manager.DetectGesture(userId, KinectGestures.Gestures.Push);
+    	manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
+        manager.DetectGesture(userId, KinectGestures.Gestures.SwipeDown);
 		
 		if(GestureInfo != null)
 		{

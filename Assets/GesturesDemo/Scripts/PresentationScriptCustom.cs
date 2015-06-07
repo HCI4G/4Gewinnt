@@ -56,6 +56,7 @@ public class PresentationScriptCustom : MonoBehaviour
         // get the gestures listener
         gestureListener = Camera.main.GetComponent<GestureListener>();
        
+       
     }
 
     void Update()
@@ -63,23 +64,28 @@ public class PresentationScriptCustom : MonoBehaviour
 
         // dont run Update() if there is no user
         KinectManager kinectManager = KinectManager.Instance;
+        
         if (autoChangeAlfterDelay && (!kinectManager || !kinectManager.IsInitialized() || !kinectManager.IsUserDetected()))
             return;
 
-        Debug.Log("After return test");
+        
 
         if (!isSpinning)
         {
+        
             if (slideChangeWithKeys)
             {
+               
                 if (Input.GetKeyDown(KeyCode.PageDown))
                     RotateToNext();
                 else if (Input.GetKeyDown(KeyCode.PageUp))
                     RotateToPrevious();
             }
 
+           
             if (slideChangeWithGestures && gestureListener)
             {
+               
                 if (gestureListener.IsSwipeLeft())
                     RotateToNext();
                 else if (gestureListener.IsSwipeRight())

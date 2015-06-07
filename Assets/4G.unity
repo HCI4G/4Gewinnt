@@ -439,7 +439,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 79003021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.55000019, y: 11.2299995, z: 20}
+  m_LocalPosition: {x: -5.55000019, y: 5, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -748,9 +748,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideChangeWithGestures: 1
-  slideChangeWithKeys: 0
+  slideChangeWithKeys: 1
   spinSpeed: 5
-  autoChangeAlfterDelay: 1
+  autoChangeAlfterDelay: 0
   slideChangeAfterDelay: 10
   horizontalSides:
   - {fileID: 2080023552}
@@ -1709,8 +1709,8 @@ GameObject:
   - 92: {fileID: 868945019}
   - 124: {fileID: 868945018}
   - 81: {fileID: 868945017}
-  - 114: {fileID: 868945022}
   - 114: {fileID: 868945023}
+  - 114: {fileID: 868945022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1777,8 +1777,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 868945016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -20}
+  m_LocalRotation: {x: .0191974174, y: 0, z: 0, w: .999815702}
+  m_LocalPosition: {x: 0, y: 5, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1831,7 +1831,8 @@ MonoBehaviour:
   Player1Gestures: 
   Player2Gestures: 
   MinTimeBetweenGestures: .699999988
-  GestureListeners: []
+  GestureListeners:
+  - {fileID: 868945022}
   CalibrationText: {fileID: 890594328}
   HandCursor1: {fileID: 0}
   HandCursor2: {fileID: 0}
