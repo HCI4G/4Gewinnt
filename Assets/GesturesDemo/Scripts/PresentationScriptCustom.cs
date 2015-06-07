@@ -55,6 +55,7 @@ public class PresentationScriptCustom : MonoBehaviour
 
         // get the gestures listener
         gestureListener = Camera.main.GetComponent<GestureListener>();
+       
     }
 
     void Update()
@@ -64,6 +65,8 @@ public class PresentationScriptCustom : MonoBehaviour
         KinectManager kinectManager = KinectManager.Instance;
         if (autoChangeAlfterDelay && (!kinectManager || !kinectManager.IsInitialized() || !kinectManager.IsUserDetected()))
             return;
+
+        Debug.Log("After return test");
 
         if (!isSpinning)
         {
