@@ -11,16 +11,16 @@ public class PresentationScriptCustom : MonoBehaviour
     public bool autoChangeAlfterDelay = false;
     public float slideChangeAfterDelay = 10;
 
-    public List<Texture> slideTextures;
+    //public List<Texture> slideTextures;
     public List<GameObject> horizontalSides;
 
     // if the presentation cube is behind the user (true) or in front of the user (false)
     public bool isBehindUser = false;
 
     private int maxSides = 0;
-    private int maxTextures = 0;
+    //private int maxTextures = 0;
     private int side = 0;
-    private int tex = 0;
+   // private int tex = 0;
     private bool isSpinning = false;
     private float slideWaitUntil;
     private Quaternion targetRotation;
@@ -37,7 +37,7 @@ public class PresentationScriptCustom : MonoBehaviour
 
         // calculate max slides and textures
         maxSides = horizontalSides.Count;
-        maxTextures = slideTextures.Count;
+       // maxTextures = slideTextures.Count;
 
         // delay the first slide
         slideWaitUntil = Time.realtimeSinceStartup + slideChangeAfterDelay;
@@ -45,13 +45,13 @@ public class PresentationScriptCustom : MonoBehaviour
         targetRotation = transform.rotation;
         isSpinning = false;
 
-        tex = 0;
+        //tex = 0;
         side = 0;
 
-        if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
-        {
-            horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
-        }
+        //if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
+       // {
+       //     horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
+       // }
 
         // get the gestures listener
         gestureListener = Camera.main.GetComponent<GestureListener>();
@@ -111,7 +111,7 @@ public class PresentationScriptCustom : MonoBehaviour
     private void RotateToNext()
     {
         // set the next texture slide
-        tex = (tex + 1) % maxTextures;
+        //tex = (tex + 1) % maxTextures;
 
         if (!isBehindUser)
         {
@@ -125,10 +125,10 @@ public class PresentationScriptCustom : MonoBehaviour
                 side -= 1;
         }
 
-        if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
-        {
-            horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
-        }
+       // if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
+       // {
+       //     horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
+       // }
 
         // rotate the presentation
         float yawRotation = !isBehindUser ? 360f / maxSides : -360f / maxSides;
@@ -141,10 +141,10 @@ public class PresentationScriptCustom : MonoBehaviour
     private void RotateToPrevious()
     {
         // set the previous texture slide
-        if (tex <= 0)
-            tex = maxTextures - 1;
-        else
-            tex -= 1;
+       // if (tex <= 0)
+       //     tex = maxTextures - 1;
+       // else
+       //     tex -= 1;
 
         if (!isBehindUser)
         {
@@ -158,10 +158,10 @@ public class PresentationScriptCustom : MonoBehaviour
             side = (side + 1) % maxSides;
         }
 
-        if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
-        {
-            horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
-        }
+        //if (horizontalSides[side] && horizontalSides[side].GetComponent<Renderer>())
+        //{
+        //    horizontalSides[side].GetComponent<Renderer>().material.mainTexture = slideTextures[tex];
+        //}
 
         // rotate the presentation
         float yawRotation = !isBehindUser ? -360f / maxSides : 360f / maxSides;
