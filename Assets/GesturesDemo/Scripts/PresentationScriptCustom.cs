@@ -33,7 +33,7 @@ public class PresentationScriptCustom : MonoBehaviour
     {
 
         // hide mouse cursor
-        Cursor.visible = false;
+        Cursor.visible = true;
 
         // calculate max slides and textures
         maxSides = horizontalSides.Count;
