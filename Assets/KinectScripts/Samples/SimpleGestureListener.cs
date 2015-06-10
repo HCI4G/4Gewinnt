@@ -23,6 +23,8 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
     	manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeUp);
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeDown);
+        manager.DeleteGesture(userId, KinectGestures.Gestures.Click);
+        manager.DeleteGesture(userId, KinectGestures.Gestures.ZoomOut);
 		
 		if(GestureInfo != null)
 		{
@@ -74,7 +76,8 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		string sGestureText = gesture + " detected";
 		if(gesture == KinectGestures.Gestures.Click)
 			sGestureText += string.Format(" at ({0:F1}, {1:F1})", screenPos.x, screenPos.y);
-		
+        Debug.Log(sGestureText);
+
 		if(GestureInfo != null)
 			GestureInfo.GetComponent<GUIText>().text = sGestureText;
 		

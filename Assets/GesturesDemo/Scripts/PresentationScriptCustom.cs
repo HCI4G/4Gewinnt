@@ -91,6 +91,10 @@ public class PresentationScriptCustom : MonoBehaviour
                     RotateToNext();
                 else if (gestureListener.IsSwipeRight())
                     RotateToPrevious();
+                else if (gestureListener.IsSwipeUp())
+                {                    
+                    RotateToNextTest();
+                }
             }
 
             // check for automatic slide-change after a given delay time
@@ -147,6 +151,15 @@ public class PresentationScriptCustom : MonoBehaviour
         isSpinning = true;
     }
 
+
+    private void RotateToNextTest()
+    {
+
+        float yawRotation = -90f;
+        Vector3 rotateDegrees = new Vector3(0, yawRotation, yawRotation);
+        targetRotation *= Quaternion.Euler(rotateDegrees);
+        isSpinning = true;
+    }
 
     private void RotateToPrevious()
     {

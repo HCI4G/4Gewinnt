@@ -9,6 +9,30 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 	
 	private bool swipeLeft;
 	private bool swipeRight;
+    private bool swipeUp;
+    private bool zoomOut;
+
+    private bool IsZoomOut()
+    {
+        if (zoomOut)
+        {
+            zoomOut = true;
+            return true;
+        }
+        return false;
+
+    }
+
+    public bool IsSwipeUp()
+    {
+        if (swipeUp)
+        {
+            swipeUp = false;
+            return true;
+        }
+        return false;
+        
+    }
 
 	
 	public bool IsSwipeLeft()
@@ -44,16 +68,15 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+        manager.DeleteGesture(userId, KinectGestures.Gestures.SwipeUp);
+        manager.DeleteGesture(userId, KinectGestures.Gestures.ZoomOut);
 
 
 		if(GestureInfo != null)
 		{
 			GestureInfo.GetComponent<GUIText>().text = "Swipe left or right to change the slides.";
         }
-        else
-        {
-            Debug.Log("GestureInfo is null");
-        }
+       
 	}
 	
 	public void UserLost(uint userId, int userIndex)
@@ -78,11 +101,21 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		{
 			GestureInfo.GetComponent<GUIText>().text = sGestureText;
 		}
-		
-		if(gesture == KinectGestures.Gestures.SwipeLeft)
-			swipeLeft = true;
-		else if(gesture == KinectGestures.Gestures.SwipeRight)
-			swipeRight = true;
+
+        if (gesture == KinectGestures.Gestures.SwipeLeft)
+            swipeLeft = true;
+        else if (gesture == KinectGestures.Gestures.SwipeRight)
+            swipeRight = true;
+        else if (gesture == KinectGestures.Gestures.SwipeUp)
+        {
+            Debug.Log("Gesture: raiseRightHand");
+            swipeUp = true;
+        }
+        else if (gesture == KinectGestures.Gestures.ZoomOut)
+        {
+            Debug.Log("Gesture: ZoomOut");
+            zoomOut = true;
+        }
 
 		return true;
 	}
