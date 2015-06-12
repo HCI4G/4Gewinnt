@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 public class OnMouseOverExample : MonoBehaviour 
@@ -12,6 +13,7 @@ public class OnMouseOverExample : MonoBehaviour
     private int currentY;
     private int currentZ;
     private string currentKey;
+    private List<string> victoryLinePostions;
     
 	public void OnMouseOver()
 	{
@@ -52,10 +54,20 @@ public class OnMouseOverExample : MonoBehaviour
         }
         if (checkConditions())
         {
+
             Debug.Log("You've won fucker!");
+            //Change the color of the victory line spheres
+            foreach (string s in victoryLinePostions)
+            {
+                int position = Convert.ToInt32(s);
+                int x = position /100 % 10;
+                int y = position / 10 % 10;
+                int z = position % 10;
+                GameObject sphere = spheres[x, y, z];
+                sphere.GetComponent<Renderer>().material.color = Color.cyan;
+
+            } 
         }
-
-
     }
     private void changeStatus(WinCheck.SphereState state)
     {             
@@ -63,10 +75,9 @@ public class OnMouseOverExample : MonoBehaviour
 
     }
 
-    private bool checkConditions()
-    {        
-        //TODO Diagonal 
-        if (checkHorizontal() || checkVertical() || checkDepth())
+    private bool checkConditions()    {        
+       
+        if (checkHorizontal() || checkVertical() || checkDepth() || checkDiagonal())
         {
             return true;
         }
@@ -99,13 +110,19 @@ public class OnMouseOverExample : MonoBehaviour
     }
 
     private bool checkHorizontal(){
-               
+
+
+        victoryLinePostions = new List<string>();
+        List<string> downSpheres = new List<string>();
+        List<string> upSpheres = new List<string>();
+ 
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
         //check down
         int x = currentX - 1;
         for (; x > 0; x--)
         {
            string testPostion = "" + x + currentY + currentZ;
+           downSpheres.Add(testPostion);
             //return false if the enum state differs
             if (!(state == WinCheck.statusMap[testPostion]))
             {
@@ -119,22 +136,31 @@ public class OnMouseOverExample : MonoBehaviour
         for (; x < 4; x++)
         {          
             string testPostion = "" + x + currentY + currentZ;
+            upSpheres.Add(testPostion);
             if (!(state == WinCheck.statusMap[testPostion]))
             {
                 return false;
             } 
         }
+
+        mergeLists(upSpheres, downSpheres);
        return true;
     }
 
     private bool checkVertical()
     {
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
+        victoryLinePostions = new List<string>();
+        List<string> downSpheres = new List<string>();
+        List<string> upSpheres = new List<string>();
+
         //check down
         int z = currentZ - 1;
         for (; z > 0; z--)
         {
+            
             string testPostion = "" + currentX + currentY + z;
+            downSpheres.Add(testPostion);
             //return false if the enum state differs
             if (!(state == WinCheck.statusMap[testPostion]))
             {
@@ -147,22 +173,29 @@ public class OnMouseOverExample : MonoBehaviour
         for (; z < 4; z++)
         {
             string testPostion = "" + currentX + currentY + z;
+            upSpheres.Add(testPostion);
             if (!(state == WinCheck.statusMap[testPostion]))
             {
                 return false;
             }
         }
+        mergeLists(upSpheres, downSpheres);
         return true;
     }
 
     private bool checkDepth()
     {
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
+        victoryLinePostions = new List<string>();
+        List<string> downSpheres = new List<string>();
+        List<string> upSpheres = new List<string>();
+
         //check down
         int y = currentY - 1;
         for (; y > 0; y--)
         {
             string testPostion = "" + currentX + y + currentZ;
+            downSpheres.Add(testPostion);
             //return false if the enum state differs
             if (!(state == WinCheck.statusMap[testPostion]))
             {
@@ -175,11 +208,13 @@ public class OnMouseOverExample : MonoBehaviour
         for (; y < 4; y++)
         {
             string testPostion = "" + currentX + y + currentZ;
+            upSpheres.Add(testPostion);
             if (!(state == WinCheck.statusMap[testPostion]))
             {
                 return false;
             }
         }
+        mergeLists(upSpheres, downSpheres);
         return true;
     }
 
@@ -197,7 +232,7 @@ public class OnMouseOverExample : MonoBehaviour
                 }
                 else
                 {
-                    checkDiagonalProcess();
+                  return checkDiagonalProcess();
                 }
             }            
            
@@ -207,7 +242,7 @@ public class OnMouseOverExample : MonoBehaviour
             //plane 1,2 only can have the middle ones
             if ((currentY == 1 | currentY == 2) & (currentZ == 1 | currentZ == 2))
             {
-                checkDiagonalProcess();
+               return checkDiagonalProcess();
             }
             else
             {
@@ -224,9 +259,44 @@ public class OnMouseOverExample : MonoBehaviour
     private bool checkDiagonalProcess()
     {
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
+        foreach (List<string> list in WinCheck.diagonalSphereLines)
+        {
+            bool winConditionSuccess = false;
+            if (list.Contains(currentKey))
+            {
+                winConditionSuccess = true;
+                foreach (string spherePostion in list)
+                {
+                    if (WinCheck.statusMap[spherePostion] != state)
+                    {
+                        winConditionSuccess = false;
+                        break;
+                    }
+                }
+            }
 
-        return true;
+            if (winConditionSuccess)
+            {
+                victoryLinePostions = list;
+                return true;              
+            }
+            
+        }         
+       return false;
     }
 
+    private void mergeLists(List<string> upper, List<string> lower)
+    {
+        foreach (string s in upper)
+        {
+            victoryLinePostions.Add(s);
+        }
+        victoryLinePostions.Add(currentKey);
+        foreach (string s in lower)
+        {
+            victoryLinePostions.Add(s);
+        }
+        
+    }
 
 }

@@ -8,6 +8,7 @@ public class WinCheck : MonoBehaviour {
     public GameObject mainPlane;
     private static GameObject[,,] spheres;
     public static Dictionary<string, SphereState> statusMap = new Dictionary<string, SphereState>();
+    public static List<List<string>> diagonalSphereLines;
 
     public enum SphereState
     {
@@ -67,7 +68,7 @@ public class WinCheck : MonoBehaviour {
             }
 
         }
-
+        initSphereLines();
        
 	}
 
@@ -92,9 +93,7 @@ public class WinCheck : MonoBehaviour {
     
 	
 	// Update is called once per frame
-	void Update () {
-
-       
+	void Update () {       
 	
 	}
 
@@ -124,6 +123,36 @@ public class WinCheck : MonoBehaviour {
     {
         return spheres;
     }
+
+    //TODO Rest of the diagonales
+    private void initSphereLines()
+    {
+
+        diagonalSphereLines = new List<List<string>>();
+        string[] leftS1 = { "010", "111", "212", "313" };      
+        string[] leftS2 = { "020", "121", "222", "323" };
+        string[] rightS1 = { "320", "221", "122", "023" };
+        string[] rightS2 = { "310", "211", "112", "013" };
+
+
+        addToList(leftS1);
+        addToList(leftS2);
+        addToList(rightS1);
+        addToList(rightS2);
+        
+    }
+
+    private void addToList(string[] list)
+    {
+        List<string> tempList = new List<string>();
+        foreach (string s in list)
+        {
+            tempList.Add(s);
+        }
+        diagonalSphereLines.Add(tempList);
+    }
+
+
 
  
 }
