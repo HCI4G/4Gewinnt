@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class WinCheck : MonoBehaviour {
 
     public GameObject mainPlane;
-    private GameObject[,,] spheres; 
+    private static GameObject[,,] spheres;
+    public static Dictionary<string, SphereState> statusMap = new Dictionary<string, SphereState>();
+
+    public enum SphereState
+    {
+        NORMAL, BLACK, WHITE
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -65,7 +72,7 @@ public class WinCheck : MonoBehaviour {
 	}
 
 
-    private void printArray()
+    private void setInitialStates()
     {       
         for (int x = 0; x < 4; x++)
         {
@@ -73,10 +80,8 @@ public class WinCheck : MonoBehaviour {
             {
                 for (int z = 0; z < 4; z++)
                 {
-                    if (spheres[x, y, z] != null)
-                    {
-                        Debug.Log(""+x +","+ y +","+ z + " has content: " + spheres[x, y, z]);
-                    }
+                    string key = "" + x + y + z;
+                    statusMap.Add(key, SphereState.NORMAL);
                 }
 
             }
@@ -89,11 +94,7 @@ public class WinCheck : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            printArray();
-
-        }
+       
 	
 	}
 
@@ -118,4 +119,11 @@ public class WinCheck : MonoBehaviour {
         } 
         return gs;
     }
+
+    public static GameObject[, ,] getSpheresArray()
+    {
+        return spheres;
+    }
+
+ 
 }
