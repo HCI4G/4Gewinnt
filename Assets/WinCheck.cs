@@ -131,15 +131,54 @@ public class WinCheck : MonoBehaviour {
         diagonalSphereLines = new List<List<string>>();
         string[] leftS1 = { "010", "111", "212", "313" };      
         string[] leftS2 = { "020", "121", "222", "323" };
-        string[] rightS1 = { "320", "221", "122", "023" };
-        string[] rightS2 = { "310", "211", "112", "013" };
+        string[] leftS3 = { "030", "131", "232", "333" };
+        string[] leftS4 = { "000", "101", "202", "303" };
 
+        string[] rightS4 = { "300", "201", "102", "003" };
+        string[] rightS3 = { "330", "231", "132", "033" };
+        string[] rightS2 = { "320", "221", "122", "023" };
+        string[] rightS1 = { "310", "211", "112", "013" };
 
+        string[] leftF1 = { "301", "211", "121", "031" };
+        string[] leftF2 = { "302", "212", "122", "032" };
+        string[] leftF3 = { "303", "213", "123", "033" };
+        string[] leftF4 = { "300", "210", "120", "030" };
+        
+        string[] rightF1 = { "331", "221", "111", "001" };
+        string[] rightF2 = { "332", "222", "112", "002"};
+        string[] rightF3 = { "333", "223", "113", "003" };
+        string[] rightF4 = { "330", "220", "110", "000" };
+
+        string[] diagonal1 = { "300", "211", "122", "033" };
+        string[] diagonal2 = { "303", "212", "121", "030" };
+        string[] diagonal3 = { "330", "221", "112", "003" };
+        string[] diagonal4 = { "333", "222", "111", "000" };
+        
         addToList(leftS1);
         addToList(leftS2);
+        addToList(leftS3);
+        addToList(leftS4);
+
         addToList(rightS1);
         addToList(rightS2);
-        
+        addToList(rightS3);
+        addToList(rightS4);
+
+        addToList(rightF1);
+        addToList(rightF2);
+        addToList(rightF3);
+        addToList(rightF4);
+
+        addToList(leftF1);
+        addToList(leftF2);
+        addToList(leftF3);
+        addToList(leftF4);
+
+        addToList(diagonal1);
+        addToList(diagonal2);
+        addToList(diagonal3);
+        addToList(diagonal4);
+
     }
 
     private void addToList(string[] list)
