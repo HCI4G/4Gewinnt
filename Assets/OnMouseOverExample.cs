@@ -94,7 +94,7 @@ public class OnMouseOverExample : MonoBehaviour
                 for (int z = 0; z < 4; z++)
                 {
                     GameObject sphere = spheres[x, y, z];
-                    if (this.GetInstanceID() == sphere.GetInstanceID())
+                    if (this.Equals(sphere))
                     {
                         currentX = x;
                         currentY = y;
