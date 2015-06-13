@@ -121,7 +121,7 @@ public class OnMouseOverExample : MonoBehaviour
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
         //check down
         int x = currentX - 1;
-        for (; x > 0; x--)
+        for (; x => 0; x--)
         {
            string testPostion = "" + x + currentY + currentZ;
            downSpheres.Add(testPostion);
@@ -158,7 +158,7 @@ public class OnMouseOverExample : MonoBehaviour
 
         //check down
         int z = currentZ - 1;
-        for (; z > 0; z--)
+        for (; z => 0; z--)
         {
             
             string testPostion = "" + currentX + currentY + z;
@@ -194,7 +194,7 @@ public class OnMouseOverExample : MonoBehaviour
 
         //check down
         int y = currentY - 1;
-        for (; y > 0; y--)
+        for (; y => 0; y--)
         {
             string testPostion = "" + currentX + y + currentZ;
             downSpheres.Add(testPostion);
