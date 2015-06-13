@@ -18,6 +18,7 @@ public class OnMouseOverExample : MonoBehaviour
 	public void OnMouseOver()
 	{
 		if(Input.GetMouseButtonDown(0)){
+            loadSpheresArray();
             findPositionInArray();
 			GetComponent<Renderer>().material.color = Color.black;
             changeStatus(WinCheck.SphereState.BLACK);
@@ -26,6 +27,7 @@ public class OnMouseOverExample : MonoBehaviour
            
         }
 		if(Input.GetMouseButtonDown(1)){
+            loadSpheresArray();
             findPositionInArray();
 			GetComponent<Renderer>().material.color = Color.white;
             changeStatus(WinCheck.SphereState.WHITE);
@@ -43,18 +45,17 @@ public class OnMouseOverExample : MonoBehaviour
 
     private void loadSpheresArray()
     {
-        spheres = WinCheck.getSpheresArray();    
+        if (spheres == null)
+        {
+            spheres = WinCheck.getSpheresArray();
+        }
+           
     }
 
     private void initialWinCheck()
-    {
-        if (spheres == null)
+    {     
+       if (checkConditions())
         {
-            loadSpheresArray();
-        }
-        if (checkConditions())
-        {
-
             Debug.Log("You've won fucker!");
             //Change the color of the victory line spheres
             foreach (string s in victoryLinePostions)
