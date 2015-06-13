@@ -9,6 +9,8 @@ public class WinCheck : MonoBehaviour {
     private static GameObject[,,] spheres;
     public static Dictionary<string, SphereState> statusMap = new Dictionary<string, SphereState>();
     public static List<List<string>> diagonalSphereLines;
+    private Quaternion baseQuaternion;
+    private Color normalState;
 
     public enum SphereState
     {
@@ -68,6 +70,11 @@ public class WinCheck : MonoBehaviour {
             }
 
         }
+
+        setInitialStates();
+        GameObject locSphere = spheres[0, 0, 0];
+        normalState = locSphere.GetComponent<Renderer>().material.color;
+        baseQuaternion = mainPlane.transform.rotation;
         initSphereLines();
        
 	}
@@ -90,11 +97,15 @@ public class WinCheck : MonoBehaviour {
         }        
     }
 
-    
-	
-	// Update is called once per frame
-	void Update () {       
-	
+ 
+	void Update () {
+        
+        if (Input.GetKey(KeyCode.Space))
+        {
+            mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
+            mainPlane.transform.rotation = baseQuaternion;
+            resetAllSphereAttributes();
+        }
 	}
 
     private ArrayList getChildren(GameObject gameObject)
@@ -124,7 +135,26 @@ public class WinCheck : MonoBehaviour {
         return spheres;
     }
 
-    //TODO Rest of the diagonales
+    private void resetAllSphereAttributes()
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                for (int z = 0; z < 4; z++)
+                {
+                    string key = "" + x + y + z;
+                    statusMap[key] = SphereState.NORMAL;
+                    GameObject temp = spheres[x, y, z];
+                    temp.GetComponent<Renderer>().transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    temp.GetComponent<Renderer>().material.color = normalState;
+                }
+
+            }
+
+        }        
+    }    
+   
     private void initSphereLines()
     {
 
@@ -189,9 +219,5 @@ public class WinCheck : MonoBehaviour {
             tempList.Add(s);
         }
         diagonalSphereLines.Add(tempList);
-    }
-
-
-
- 
+    } 
 }
