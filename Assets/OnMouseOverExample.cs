@@ -253,7 +253,7 @@ public class OnMouseOverExample : MonoBehaviour
         }
         
 
-        return true;
+        return false;
     }
 
 
