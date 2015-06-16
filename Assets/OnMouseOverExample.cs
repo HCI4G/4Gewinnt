@@ -271,18 +271,15 @@ public class OnMouseOverExample : MonoBehaviour
                 {
                     if (WinCheck.statusMap[spherePostion] != state)
                     {
-                        winConditionSuccess = false;
-                        break;
+                        winConditionSuccess = false;                       
                     }
                 }
-            }
-
-            if (winConditionSuccess)
-            {
-                victoryLinePostions = list;
-                return true;              
-            }
-            
+                if (winConditionSuccess)
+                {
+                    victoryLinePostions = list;
+                    return true;
+                }
+            }                      
         }         
        return false;
     }
