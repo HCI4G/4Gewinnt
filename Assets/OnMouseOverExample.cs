@@ -222,44 +222,7 @@ public class OnMouseOverExample : MonoBehaviour
 
     private bool checkDiagonal()
     {
-       
-        if (currentX == 0 | currentX == 1)
-        {
-            //plane 0,3 can only have the ones arround
-            if (currentY == 1 | currentY == 2)
-            {
-                if (currentZ == 1 | currentZ == 2)
-                {
-                    return false;
-                }
-                else
-                {
-                  return checkDiagonalProcess();
-                }
-            }            
-           
-        }
-        else
-        {
-            //plane 1,2 only can have the middle ones
-            if ((currentY == 1 | currentY == 2) & (currentZ == 1 | currentZ == 2))
-            {
-               return checkDiagonalProcess();
-            }
-            else
-            {
-                return false;
-            }
-        }
-        
 
-        return false;
-    }
-
-
-    //Wenn das aufgerufen wird sind die ungültigen Position schon aussortiert.
-    private bool checkDiagonalProcess()
-    {
         WinCheck.SphereState state = WinCheck.statusMap[currentKey];
         foreach (List<string> list in WinCheck.diagonalSphereLines)
         {
@@ -271,7 +234,7 @@ public class OnMouseOverExample : MonoBehaviour
                 {
                     if (WinCheck.statusMap[spherePostion] != state)
                     {
-                        winConditionSuccess = false;                       
+                        winConditionSuccess = false;
                     }
                 }
                 if (winConditionSuccess)
@@ -279,10 +242,11 @@ public class OnMouseOverExample : MonoBehaviour
                     victoryLinePostions = list;
                     return true;
                 }
-            }                      
-        }         
-       return false;
+            }
+        }
+        return false;
     }
+
 
     private void mergeLists(List<string> upper, List<string> lower)
     {
