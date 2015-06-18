@@ -159,50 +159,70 @@ public class WinCheck : MonoBehaviour {
     {
 
         diagonalSphereLines = new List<List<string>>();
-        string[] leftS1 = { "010", "111", "212", "313" };      
-        string[] leftS2 = { "020", "121", "222", "323" };
-        string[] leftS3 = { "030", "131", "232", "333" };
-        string[] leftS4 = { "000", "101", "202", "303" };
+		string[] frontS0Up = { "000", "110", "220", "330" };
+		string[] frontS1Up = { "001", "111", "221", "331" };
+		string[] frontS2Up = { "002", "112", "222", "332" };
+		string[] frontS3Up = { "003", "113", "223", "333" };
+		
+		string[] frontS0Down = { "030", "120", "210", "300" };
+		string[] frontS1Down = { "031", "121", "211", "301" };
+		string[] frontS2Down = { "032", "122", "212", "302" };
+		string[] frontS3Down = { "033", "123", "213", "303" };
 
-        string[] rightS4 = { "300", "201", "102", "003" };
-        string[] rightS3 = { "330", "231", "132", "033" };
-        string[] rightS2 = { "320", "221", "122", "023" };
-        string[] rightS1 = { "310", "211", "112", "013" };
+		string[] leftS0Up = { "003", "012", "021", "030" };      
+		string[] leftS1Up = { "103", "112", "121", "130" };
+		string[] leftS2Up = { "203", "212", "221", "230" };
+		string[] leftS3Up = { "303", "312", "321", "330" };
 
-        string[] leftF1 = { "301", "211", "121", "031" };
-        string[] leftF2 = { "302", "212", "122", "032" };
-        string[] leftF3 = { "303", "213", "123", "033" };
-        string[] leftF4 = { "300", "210", "120", "030" };
+		string[] leftS0Down = { "033", "022", "011", "000" };      
+		string[] leftS1Down = { "133", "122", "111", "100" };
+		string[] leftS2Down = { "233", "222", "211", "200" };
+		string[] leftS3Down = { "333", "322", "311", "300" };
+		
+        string[] bottomS0Up = { "000", "101", "202", "303" };
+		string[] bottomS1Up = { "010", "111", "212", "313" };
+		string[] bottomS2Up = { "020", "121", "222", "323" };
+		string[] bottomS3Up = { "030", "131", "232", "333" };
         
-        string[] rightF1 = { "331", "221", "111", "001" };
-        string[] rightF2 = { "332", "222", "112", "002"};
-        string[] rightF3 = { "333", "223", "113", "003" };
-        string[] rightF4 = { "330", "220", "110", "000" };
+		string[] bottomS0Down = { "003", "102", "201", "300" };
+		string[] bottomS1Down = { "013", "112", "211", "310" };
+		string[] bottomS2Down = { "023", "122", "221", "320" };
+		string[] bottomS3Down = { "033", "132", "231", "330" };
 
         string[] diagonal1 = { "300", "211", "122", "033" };
         string[] diagonal2 = { "303", "212", "121", "030" };
         string[] diagonal3 = { "330", "221", "112", "003" };
         string[] diagonal4 = { "333", "222", "111", "000" };
         
-        addToList(leftS1);
-        addToList(leftS2);
-        addToList(leftS3);
-        addToList(leftS4);
+		addToList(frontS0Up);
+		addToList(frontS1Up);
+		addToList(frontS2Up);
+		addToList(frontS3Up);
+		
+		addToList(frontS0Down);
+		addToList(frontS1Down);
+		addToList(frontS2Down);
+		addToList(frontS3Down);
 
-        addToList(rightS1);
-        addToList(rightS2);
-        addToList(rightS3);
-        addToList(rightS4);
+		addToList(leftS0Up);
+		addToList(leftS1Up);
+        addToList(leftS2Up);
+        addToList(leftS3Up);
 
-        addToList(rightF1);
-        addToList(rightF2);
-        addToList(rightF3);
-        addToList(rightF4);
+		addToList(leftS0Down);
+		addToList(leftS1Down);
+		addToList(leftS2Down);
+		addToList(leftS3Down);
 
-        addToList(leftF1);
-        addToList(leftF2);
-        addToList(leftF3);
-        addToList(leftF4);
+		addToList(bottomS0Up);
+		addToList(bottomS1Up);
+		addToList(bottomS2Up);
+		addToList(bottomS3Up);
+		
+		addToList(bottomS0Down);
+		addToList(bottomS1Down);
+		addToList(bottomS2Down);
+		addToList(bottomS3Down);
 
         addToList(diagonal1);
         addToList(diagonal2);
