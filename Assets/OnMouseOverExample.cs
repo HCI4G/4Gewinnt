@@ -68,6 +68,8 @@ public class OnMouseOverExample : MonoBehaviour
                 sphere.GetComponent<Renderer>().material.color = Color.cyan;
 
             } 
+			Application.LoadLevel(2);
+
         }
     }
     private void changeStatus(WinCheck.SphereState state)
