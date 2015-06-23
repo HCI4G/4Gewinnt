@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour {
 
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button(new Rect(buttonWidth,2f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+			MainUI.startGame = true;
 			Application.LoadLevel(1);
 		}
 		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {

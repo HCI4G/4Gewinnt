@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -15,6 +15,21 @@ public class OnMouseOverExample : MonoBehaviour
     private string currentKey;
     private List<string> victoryLinePostions;
     
+	public Boolean doWindow0 = false;
+
+	void DoWindow0(int windowID) {
+		if(GUI.Button(new Rect(10, 30, 80, 20), "Klar!!!!")){
+			if (doWindow0){
+				doWindow0 = false;
+				MainUI.playerCount++;
+			}
+		}
+	}
+	void OnGUI() {
+		if (doWindow0)
+			GUI.Window(0,new Rect(Screen.height/3,Screen.width/3,Screen.height/3,Screen.width/3),DoWindow0,"Richtige Kugel???");
+	}
+	
 	public void OnMouseOver()
 	{
 		if(Input.GetMouseButtonDown(0)){
@@ -24,7 +39,8 @@ public class OnMouseOverExample : MonoBehaviour
             changeStatus(WinCheck.SphereState.BLACK);
             changeForm();
             initialWinCheck();
-           
+			if (!doWindow0)
+				doWindow0 = true;       
         }
 		if(Input.GetMouseButtonDown(1)){
             loadSpheresArray();
@@ -33,7 +49,11 @@ public class OnMouseOverExample : MonoBehaviour
             changeStatus(WinCheck.SphereState.WHITE);
             changeForm();
             initialWinCheck();
+			if (!doWindow0)
+				doWindow0 = true;
         }
+
+
 	}
 
     private void changeForm()
@@ -68,6 +88,7 @@ public class OnMouseOverExample : MonoBehaviour
                 sphere.GetComponent<Renderer>().material.color = Color.cyan;
 
             } 
+			MainUI.startGame = false;
 			Application.LoadLevel(2);
 
         }
