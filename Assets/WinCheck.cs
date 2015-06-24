@@ -12,6 +12,7 @@ public class WinCheck : MonoBehaviour {
     private  Quaternion baseQuaternion;
     private  Color normalState;
     private static WinCheck winCheck;
+    public WinCheck.SphereState currentActiveUserState = WinCheck.SphereState.BLACK;
 
     public enum SphereState
     {

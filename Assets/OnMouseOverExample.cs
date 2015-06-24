@@ -20,6 +20,8 @@ public class OnMouseOverExample : MonoBehaviour
 	private float screenWidth;
 	private float buttonHeight;
 	private float buttonWidth;
+    private WinCheck.SphereState currentActiveUserState;
+
 
 	private bool win = false;
 	
@@ -31,6 +33,8 @@ public class OnMouseOverExample : MonoBehaviour
 		buttonWidth = screenWidth * 0.3f;
 	}
 	
+    
+
 	void winMenu () {
 
 		GUI.Box (new Rect (buttonWidth,buttonHeight,buttonWidth, buttonHeight), "Glückwunsch du hast gewonnen");
@@ -53,10 +57,17 @@ public class OnMouseOverExample : MonoBehaviour
 
 	void DoWindow0(int windowID) {
 		if(GUI.Button(new Rect(10, 30, 80, 20), "Klar!!!!")){
-			if (doWindow0){
 				doWindow0 = false;
 				MainUI.playerCount++;
-			}
+                if (currentActiveUserState == WinCheck.SphereState.BLACK)
+                {
+                    WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.WHITE;
+                }
+                else
+                {
+                    WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.BLACK;
+                }
+
 		}
 	}
 	void OnGUI() {
@@ -75,28 +86,42 @@ public class OnMouseOverExample : MonoBehaviour
 	public void OnMouseOver()
 	{
 		if(Input.GetMouseButtonDown(0)){
+            currentActiveUserState = WinCheck.getInstance().currentActiveUserState;
             loadSpheresArray();
             findPositionInArray();
-			GetComponent<Renderer>().material.color = Color.black;
-            changeStatus(WinCheck.SphereState.BLACK);
+
+            if (WinCheck.statusMap[currentKey] != WinCheck.SphereState.NORMAL)
+            {
+                return;
+            }
+            
+            changeActiveUser(currentActiveUserState);
             changeForm();
             initialWinCheck();
 			if (!doWindow0)
 				doWindow0 = true;       
-        }
-		if(Input.GetMouseButtonDown(1)){
-            loadSpheresArray();
-            findPositionInArray();
-			GetComponent<Renderer>().material.color = Color.white;
-            changeStatus(WinCheck.SphereState.WHITE);
-            changeForm();
-            initialWinCheck();
-			if (!doWindow0)
-				doWindow0 = true;
-        }
-
+        }		  
 
 	}
+
+    private void changeActiveUser(WinCheck.SphereState state)
+    {
+        Debug.Log("Before:" +GetComponent<Renderer>().material.color);
+        if (state == WinCheck.SphereState.BLACK) { 
+            GetComponent<Renderer>().material.color = Color.black;
+            Debug.Log("Change state black");
+           
+            changeStatus(WinCheck.SphereState.BLACK);
+            }
+        else if(state == WinCheck.SphereState.WHITE){
+            GetComponent<Renderer>().material.color = Color.white;
+            Debug.Log("Change state white");
+            changeStatus(WinCheck.SphereState.WHITE);
+        }
+        Debug.Log("After:" +GetComponent<Renderer>().material.color);
+    }
+
+
 
     private void changeForm()
     {
