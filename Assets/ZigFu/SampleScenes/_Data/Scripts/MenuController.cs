@@ -69,6 +69,7 @@ public class MenuController : MonoBehaviour {
     public GameObject[] HideDuringSession;
     void Session_Start()
     {
+        /*
         //Debug.Log("Session Start from MenuController");
         foreach (GameObject go in ShowDuringSession)
         {
@@ -91,6 +92,7 @@ public class MenuController : MonoBehaviour {
             go.SetActiveRecursively(true);
         }
         items[currentItem].GetComponent<Renderer>().material.color = origColor;
+         * */
     }
 	// Use this for initialization
 	void Start () {
@@ -101,4 +103,5 @@ public class MenuController : MonoBehaviour {
 	void Update () {
 	
 	}
+         
 }
