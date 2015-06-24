@@ -77,19 +77,15 @@ public class WinCheck : MonoBehaviour {
 
     private void setInitialStates()
     {       
-        for (int x = 0; x < 4; x++)
-        {
-            for (int y = 0; y < 4; y++)
-            {
-                for (int z = 0; z < 4; z++)
-                {
-                    string key = "" + x + y + z;
-                    statusMap.Add(key, SphereState.NORMAL);
-                }
-
-            }
-
-        }        
+		statusMap.Clear ();
+			for (int x = 0; x < 4; x++) {
+				for (int y = 0; y < 4; y++) {
+					for (int z = 0; z < 4; z++) {
+						string key = "" + x + y + z;
+						statusMap.Add (key, SphereState.NORMAL);
+					}
+				}
+			}
     }
 
 	public void resetGame(){
