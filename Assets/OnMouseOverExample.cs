@@ -20,6 +20,8 @@ public class OnMouseOverExample : MonoBehaviour
 	private float screenWidth;
 	private float buttonHeight;
 	private float buttonWidth;
+	private float menuX;
+
     private WinCheck.SphereState currentActiveUserState;
 
 
@@ -30,7 +32,8 @@ public class OnMouseOverExample : MonoBehaviour
 		screenHeight = Screen.height;
 		screenWidth = Screen.width;
 		buttonHeight = screenHeight * 0.1f;
-		buttonWidth = screenWidth * 0.3f;
+		buttonWidth = screenWidth * 0.4f;
+		menuX = screenWidth * 0.3f;
 	}
 	
     
@@ -39,16 +42,16 @@ public class OnMouseOverExample : MonoBehaviour
 
 		GUI.Box (new Rect (buttonWidth,buttonHeight,buttonWidth, buttonHeight), "Glückwunsch du hast gewonnen");
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(buttonWidth,2f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
+		if(GUI.Button(new Rect(menuX,2f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
 			Application.LoadLevel(0);
 		}
-		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+		if(GUI.Button(new Rect(menuX,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
 			MainUI.startGame = true;
 			win = false;
 			
             WinCheck.getInstance().resetGame();
 		}
-		if(GUI.Button(new Rect(buttonWidth,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
+		if(GUI.Button(new Rect(menuX,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();
 		}
 	}
@@ -67,7 +70,10 @@ public class OnMouseOverExample : MonoBehaviour
                 {
                     WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.BLACK;
                 }
+		}
 
+		if(GUI.Button(new Rect(10, 70, 80,20), "NÖ!!!")){
+			doWindow0 = false; 
 		}
 	}
 	void OnGUI() {
