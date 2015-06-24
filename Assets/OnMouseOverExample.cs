@@ -21,6 +21,7 @@ public class OnMouseOverExample : MonoBehaviour
 	private float buttonHeight;
 	private float buttonWidth;
     private WinCheck.SphereState currentActiveUserState;
+    private Color color;
 
 
 	private bool win = false;
@@ -59,7 +60,8 @@ public class OnMouseOverExample : MonoBehaviour
 		if(GUI.Button(new Rect(10, 30, 80, 20), "Klar!!!!")){
 				doWindow0 = false;
 				MainUI.playerCount++;
-                if (currentActiveUserState == WinCheck.SphereState.BLACK)
+                
+                if (WinCheck.getInstance().currentActiveUserState == WinCheck.SphereState.BLACK)
                 {
                     WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.WHITE;
                 }
@@ -67,7 +69,7 @@ public class OnMouseOverExample : MonoBehaviour
                 {
                     WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.BLACK;
                 }
-
+           
 		}
 	}
 	void OnGUI() {
@@ -105,20 +107,18 @@ public class OnMouseOverExample : MonoBehaviour
 	}
 
     private void changeActiveUser(WinCheck.SphereState state)
-    {
-        Debug.Log("Before:" +GetComponent<Renderer>().material.color);
+    {       
         if (state == WinCheck.SphereState.BLACK) { 
-            GetComponent<Renderer>().material.color = Color.black;
+            GetComponent<Renderer>().material.color = Color.black;           
             Debug.Log("Change state black");
            
             changeStatus(WinCheck.SphereState.BLACK);
             }
         else if(state == WinCheck.SphereState.WHITE){
-            GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Renderer>().material.color = Color.white;           
             Debug.Log("Change state white");
             changeStatus(WinCheck.SphereState.WHITE);
-        }
-        Debug.Log("After:" +GetComponent<Renderer>().material.color);
+        }       
     }
 
 
