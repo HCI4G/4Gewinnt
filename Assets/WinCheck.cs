@@ -23,7 +23,16 @@ public class WinCheck : MonoBehaviour {
 	void Start () {
 
         winCheck = this;
-     
+
+        if (Application.HasProLicense())
+        {
+            Debug.Log("Unity is pro version.");
+        }
+        else
+        {
+            Debug.Log("Unity is free version.");
+        }
+
         spheres = new GameObject[4,4,4];       
         int counter = 0;
 

@@ -9,13 +9,16 @@ public class MainMenu : MonoBehaviour {
 	private float screenWidth;
 	private float buttonHeight;
 	private float buttonWidth;
+	private float menuX;
 
 	void Start(){
 
 		screenHeight = Screen.height;
 		screenWidth = Screen.width;
 		buttonHeight = screenHeight * 0.1f;
-		buttonWidth = screenWidth * 0.3f;
+		buttonWidth = screenWidth * 0.4f;
+		menuX = screenWidth * 0.3f;
+
 	}
 
 	void OnGUI () {
@@ -26,11 +29,11 @@ public class MainMenu : MonoBehaviour {
 		                  
 
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(buttonWidth,2f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+		if(GUI.Button(new Rect(menuX,2f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
 			MainUI.startGame = true;
 			Application.LoadLevel(1);
 		}
-		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
+		if(GUI.Button(new Rect(menuX,3.5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();
 		}
 	}
