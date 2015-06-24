@@ -9,8 +9,9 @@ public class WinCheck : MonoBehaviour {
     private static GameObject[,,] spheres;
     public static Dictionary<string, SphereState> statusMap = new Dictionary<string, SphereState>();
     public static List<List<string>> diagonalSphereLines;
-    private Quaternion baseQuaternion;
-    private Color normalState;
+    private  Quaternion baseQuaternion;
+    private  Color normalState;
+    private static WinCheck winCheck;
 
     public enum SphereState
     {
@@ -19,6 +20,8 @@ public class WinCheck : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        winCheck = this;
 
         if (Application.HasProLicense())
         {
@@ -97,7 +100,7 @@ public class WinCheck : MonoBehaviour {
         }        
     }
 
-	public static void resetGame(){
+	public void resetGame(){
 		mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
 		mainPlane.transform.rotation = baseQuaternion;
 		resetAllSphereAttributes();
@@ -243,5 +246,10 @@ public class WinCheck : MonoBehaviour {
             tempList.Add(s);
         }
         diagonalSphereLines.Add(tempList);
-    } 
+    }
+
+    public static WinCheck getInstance()
+    {
+        return winCheck;
+    }
 }

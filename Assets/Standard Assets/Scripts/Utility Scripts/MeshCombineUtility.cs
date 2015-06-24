@@ -15,7 +15,7 @@ public class MeshCombineUtility {
 		int vertexCount = 0;
 		int triangleCount = 0;
 		int stripCount = 0;
-		foreach( MeshInstance combine in combines )
+		/*foreach( MeshInstance combine in combines )
 		{
 			if (combine.mesh)
 			{
@@ -43,6 +43,7 @@ public class MeshCombineUtility {
 				}
 			}
 		}
+         */ 
 		
 		// Precomputed how many triangles we need instead
 		if (!generateStrips)
@@ -121,7 +122,8 @@ public class MeshCombineUtility {
 		int triangleOffset=0;
 		int stripOffset=0;
 		int vertexOffset=0;
-		foreach( MeshInstance combine in combines )
+		/*
+         * foreach( MeshInstance combine in combines )
 		{
 			if (combine.mesh)
 			{
@@ -164,6 +166,7 @@ public class MeshCombineUtility {
 				vertexOffset += combine.mesh.vertexCount;
 			}
 		}
+         */
 		
 		Mesh mesh = new Mesh();
 		mesh.name = "Combined Mesh";
@@ -173,10 +176,10 @@ public class MeshCombineUtility {
 		mesh.uv = uv;
 		mesh.uv2 = uv1;
 		mesh.tangents = tangents;
-		if (generateStrips)
-			mesh.SetTriangleStrip(strip, 0);
-		else
-			mesh.triangles = triangles;
+	//	if (generateStrips)
+	//		mesh.SetTriangleStrip(strip, 0);
+	//	else
+	//		mesh.triangles = triangles;
 		
 		return mesh;
 	}

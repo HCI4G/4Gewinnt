@@ -29,7 +29,7 @@ public class OnMouseOverExample : MonoBehaviour
 		screenWidth = Screen.width;
 		buttonHeight = screenHeight * 0.1f;
 		buttonWidth = screenWidth * 0.3f;
-	};
+	}
 	
 	void winMenu () {
 
@@ -41,7 +41,8 @@ public class OnMouseOverExample : MonoBehaviour
 		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
 			MainUI.startGame = true;
 			win = false;
-			WinCheck.resetGame();
+			
+            WinCheck.getInstance().resetGame();
 		}
 		if(GUI.Button(new Rect(buttonWidth,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();

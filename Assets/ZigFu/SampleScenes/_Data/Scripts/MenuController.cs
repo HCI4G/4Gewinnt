@@ -21,15 +21,15 @@ public class MenuController : MonoBehaviour {
         currentItem = fader.hoverItem;
 
         output.text = fader.hoverItem.ToString();
-        
-        origColor = items[fader.hoverItem].renderer.material.color;
-        items[fader.hoverItem].renderer.material.color = hoverColor;
+
+        origColor = items[fader.hoverItem].GetComponent<Renderer>().material.color;
+        items[fader.hoverItem].GetComponent<Renderer>().material.color = hoverColor;
      //   Debug.Log("HoverStart: " + fader.hoverItem.ToString());
     }
 
     void Fader_HoverStop(ZigFader fader)
     {
-        items[fader.hoverItem].renderer.material.color = origColor; 
+        items[fader.hoverItem].GetComponent<Renderer>().material.color = origColor; 
       //  Debug.Log("HoverStop: " + fader.hoverItem.ToString());
     }
 
@@ -42,25 +42,25 @@ public class MenuController : MonoBehaviour {
     bool clicked = false;
     void PushDetector_Push()
     {
-        items[currentItem].renderer.material.color = pushColor;
+        items[currentItem].GetComponent<Renderer>().material.color = pushColor;
         clicked = false;
     }
     void PushDetector_Hold()
     {
         clicked = false;
-        items[currentItem].renderer.material.color = holdColor;
+        items[currentItem].GetComponent<Renderer>().material.color = holdColor;
     }
     void PushDetector_Click()
     {
         clicked = true;
-        items[currentItem].renderer.material.color = clickColor;
+        items[currentItem].GetComponent<Renderer>().material.color = clickColor;
     }
 
     void PushDetector_Release()
     {
         if (!clicked)
         {
-            items[currentItem].renderer.material.color = heldReleaseColor;
+            items[currentItem].GetComponent<Renderer>().material.color = heldReleaseColor;
         }
         
     }
@@ -90,7 +90,7 @@ public class MenuController : MonoBehaviour {
         {
             go.SetActiveRecursively(true);
         }
-       items[currentItem].renderer.material.color = origColor;
+        items[currentItem].GetComponent<Renderer>().material.color = origColor;
     }
 	// Use this for initialization
 	void Start () {

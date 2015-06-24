@@ -13,7 +13,7 @@ public class animatedTexture : MonoBehaviour {
             for (int y = 0; y < images.Length; y++)
             {
 
-                renderer.material.SetTexture("_MainTex", images[y]);
+                GetComponent<Renderer>().material.SetTexture("_MainTex", images[y]);
 
                 yield return new WaitForSeconds(timeBetweenFrames);
 
