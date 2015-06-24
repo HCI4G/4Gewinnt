@@ -97,14 +97,18 @@ public class WinCheck : MonoBehaviour {
         }        
     }
 
+	public static void resetGame(){
+		mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
+		mainPlane.transform.rotation = baseQuaternion;
+		resetAllSphereAttributes();
+	}
+
  
 	void Update () {
         
         if (Input.GetKey(KeyCode.Space))
         {
-            mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
-            mainPlane.transform.rotation = baseQuaternion;
-            resetAllSphereAttributes();
+			resetGame();
         }
 	}
 

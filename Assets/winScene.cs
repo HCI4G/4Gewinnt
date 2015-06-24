@@ -31,7 +31,7 @@ public class winScene : MonoBehaviour {
 		}
 		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
 			MainUI.startGame = true;
-			Application.LoadLevel(1);
+			WinCheck.resetGame();
 		}
 		if(GUI.Button(new Rect(buttonWidth,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();

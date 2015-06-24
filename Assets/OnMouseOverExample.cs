@@ -6,7 +6,7 @@ using System;
 
 public class OnMouseOverExample : MonoBehaviour 
 {
-
+	public GUISkin _skin = null;
     private GameObject[, ,] spheres;
 
     private int currentX;
@@ -14,6 +14,39 @@ public class OnMouseOverExample : MonoBehaviour
     private int currentZ;
     private string currentKey;
     private List<string> victoryLinePostions;
+
+
+	private float screenHeight;
+	private float screenWidth;
+	private float buttonHeight;
+	private float buttonWidth;
+
+	private bool win = false;
+	
+	void Start(){
+		
+		screenHeight = Screen.height;
+		screenWidth = Screen.width;
+		buttonHeight = screenHeight * 0.1f;
+		buttonWidth = screenWidth * 0.3f;
+	};
+	
+	void winMenu () {
+
+		GUI.Box (new Rect (buttonWidth,buttonHeight,buttonWidth, buttonHeight), "Glückwunsch du hast gewonnen");
+		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
+		if(GUI.Button(new Rect(buttonWidth,2f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
+			Application.LoadLevel(0);
+		}
+		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+			MainUI.startGame = true;
+			win = false;
+			WinCheck.resetGame();
+		}
+		if(GUI.Button(new Rect(buttonWidth,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
+			Application.Quit();
+		}
+	}
     
 	public Boolean doWindow0 = false;
 
@@ -26,8 +59,16 @@ public class OnMouseOverExample : MonoBehaviour
 		}
 	}
 	void OnGUI() {
+		if (_skin != null) {
+			GUI.skin = _skin;
+		}
+
 		if (doWindow0)
 			GUI.Window(0,new Rect(Screen.height/3,Screen.width/3,Screen.height/3,Screen.width/3),DoWindow0,"Richtige Kugel???");
+
+		if (win)
+			winMenu ();
+
 	}
 	
 	public void OnMouseOver()
@@ -89,7 +130,8 @@ public class OnMouseOverExample : MonoBehaviour
 
             } 
 			MainUI.startGame = false;
-			Application.LoadLevel(2);
+
+			win = true;
 
         }
     }
