@@ -9,10 +9,11 @@ public class WinCheck : MonoBehaviour {
     private static GameObject[,,] spheres;
     public static Dictionary<string, SphereState> statusMap = new Dictionary<string, SphereState>();
     public static List<List<string>> diagonalSphereLines;
-    private  Quaternion baseQuaternion;
-    private  Color normalState;
+    public  Quaternion baseQuaternion;
+    public  Color normalState;
     private static WinCheck winCheck;
     public WinCheck.SphereState currentActiveUserState = WinCheck.SphereState.BLACK;
+	public bool windowMode = false; 
 
     public enum SphereState
     {
@@ -106,10 +107,7 @@ public class WinCheck : MonoBehaviour {
  
 	void Update () {
         
-        if (Input.GetKey(KeyCode.Space))
-        {
-			resetGame();
-        }
+        
 	}
 
     private ArrayList getChildren(GameObject gameObject)

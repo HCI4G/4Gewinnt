@@ -15,7 +15,6 @@ public class OnMouseOverExample : MonoBehaviour
     private string currentKey;
     private List<string> victoryLinePostions;
 
-
 	private float screenHeight;
 	private float screenWidth;
 	private float buttonHeight;
@@ -72,10 +71,15 @@ public class OnMouseOverExample : MonoBehaviour
                 {
                     WinCheck.getInstance().currentActiveUserState = WinCheck.SphereState.BLACK;
                 }
+			initialWinCheck();
+			WinCheck.getInstance().windowMode = false;
 		}
 
 		if(GUI.Button(new Rect(10, 70, 80,20), "NÖ!!!")){
 			doWindow0 = false; 
+			resetCurrentSphere();
+			WinCheck.getInstance().windowMode = false;
+
 		}
 	}
 	void OnGUI() {
@@ -93,6 +97,8 @@ public class OnMouseOverExample : MonoBehaviour
 	
 	public void OnMouseOver()
 	{
+		if (WinCheck.getInstance().windowMode)
+			return;
 		if(Input.GetMouseButtonDown(0)){
             currentActiveUserState = WinCheck.getInstance().currentActiveUserState;
             loadSpheresArray();
@@ -105,11 +111,20 @@ public class OnMouseOverExample : MonoBehaviour
             
             changeActiveUser(currentActiveUserState);
             changeForm();
-            initialWinCheck();
-			if (!doWindow0)
-				doWindow0 = true;       
+            
+			if (!doWindow0){
+				doWindow0 = true;  
+				WinCheck.getInstance().windowMode = true;
+			}
         }		  
 
+	}
+
+	private void resetCurrentSphere(){
+		GetComponent<Renderer>().material.color = WinCheck.getInstance().normalState;
+		WinCheck.SphereState state = WinCheck.getInstance().currentActiveUserState;
+		changeStatus(WinCheck.SphereState.NORMAL);
+		GetComponent<Renderer>().transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 	}
 
     private void changeActiveUser(WinCheck.SphereState state)
