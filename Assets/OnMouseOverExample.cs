@@ -41,7 +41,7 @@ public class OnMouseOverExample : MonoBehaviour
 
 	void winMenu () {
 
-		GUI.Box (new Rect (buttonWidth,buttonHeight,buttonWidth, buttonHeight), "Glückwunsch du hast gewonnen");
+		GUI.Box (new Rect (menuX,buttonHeight,buttonWidth, buttonHeight), "Glückwunsch du hast gewonnen");
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button(new Rect(menuX,2f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
 			Application.LoadLevel(0);
