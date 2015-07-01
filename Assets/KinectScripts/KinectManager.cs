@@ -1145,11 +1145,13 @@ public class KinectManager : MonoBehaviour
 				foreach(KinectGestures.GestureData gestureData in player1Gestures)
 				{
 					if(gestureData.complete)
-					{
+					{                       
 						if(gestureData.gesture == KinectGestures.Gestures.Click)
 						{
+                           
 							if(ControlMouseCursor)
 							{
+                               
 								MouseControl.MouseClick();
 							}
 						}

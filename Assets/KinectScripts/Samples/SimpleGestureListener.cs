@@ -49,7 +49,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 			string sGestureText = string.Format ("{0} {1:F1}% complete", gesture, progress * 100);
 			if(GestureInfo != null)
 				GestureInfo.GetComponent<GUIText>().text = sGestureText;
-			
+          
 			progressDisplayed = true;
 		}		
 		else if((gesture == KinectGestures.Gestures.ZoomOut || gesture == KinectGestures.Gestures.ZoomIn) && progress > 0.5f)

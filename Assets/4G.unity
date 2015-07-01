@@ -695,6 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc2120b6f1dc4d47be93ca4478dcf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skin: {fileID: 0}
   doWindow0: 0
 --- !u!114 &142635368
 MonoBehaviour:
@@ -741,6 +742,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainPlane: {fileID: 142635365}
+  baseQuaternion: {x: 0, y: 0, z: 0, w: 0}
+  normalState: {r: 0, g: 0, b: 0, a: 0}
+  currentActiveUserState: 1
+  windowMode: 0
 --- !u!114 &142635371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,15 +1930,15 @@ MonoBehaviour:
   Player2Avatars: []
   Player1CalibrationPose: 0
   Player2CalibrationPose: 0
-  Player1Gestures: 08000000090000000c0000000d000000070000000e0000000a000000
-  Player2Gestures: 
+  Player1Gestures: 08000000090000000c0000000d00000007000000
+  Player2Gestures: 08000000090000000c0000000d00000007000000
   MinTimeBetweenGestures: .699999988
   GestureListeners:
   - {fileID: 868945022}
   CalibrationText: {fileID: 890594328}
   HandCursor1: {fileID: 345517675}
   HandCursor2: {fileID: 0}
-  ControlMouseCursor: 0
+  ControlMouseCursor: 1
   GesturesDebugText: {fileID: 0}
 --- !u!114 &868945024
 MonoBehaviour:

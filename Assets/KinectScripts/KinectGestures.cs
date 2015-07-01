@@ -132,6 +132,9 @@ public class KinectGestures
 	
 	private static void SetScreenPos(uint userId, ref GestureData gestureData, ref Vector3[] jointsPos, ref bool[] jointsTracked)
 	{
+
+            
+
 		Vector3 handPos = jointsPos[rightHandIndex];
 //		Vector3 elbowPos = jointsPos[rightElbowIndex];
 //		Vector3 shoulderPos = jointsPos[rightShoulderIndex];
@@ -196,7 +199,10 @@ public class KinectGestures
 				Vector3 relHandPos = handPos - gestureData.tagVector;
 				gestureData.screenPos.x = Mathf.Clamp01(relHandPos.x / gestureData.tagVector2.x);
 				gestureData.screenPos.y = Mathf.Clamp01(relHandPos.y / gestureData.tagVector2.y);
+               
 			}
+
+            
 			
 			//Debug.Log(string.Format("{0} - S: {1}, H: {2}, SH: {3}, L : {4}", gestureData.gesture, shoulderPos, handPos, shoulderToHand, gestureData.tagFloat));
 		}
@@ -455,6 +461,8 @@ public class KinectGestures
 
 							// set screen position at the start, because this is the most accurate click position
 							SetScreenPos(userId, ref gestureData, ref jointsPos, ref jointsTracked);
+                           
+                            
 						}
 						else if(jointsTracked[leftHandIndex] && jointsTracked[leftElbowIndex] &&
 					            (jointsPos[leftHandIndex].y - jointsPos[leftElbowIndex].y) > -0.1f)
@@ -464,7 +472,9 @@ public class KinectGestures
 
 							// set screen position at the start, because this is the most accurate click position
 							SetScreenPos(userId, ref gestureData, ref jointsPos, ref jointsTracked);
+                           
 						}
+                        
 						break;
 				
 					case 1:  // gesture - phase 2
