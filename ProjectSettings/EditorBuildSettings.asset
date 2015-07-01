@@ -11,5 +11,5 @@ EditorBuildSettings:
     path: Assets/4GMainMenu.unity
   - enabled: 1
     path: Assets/4G.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/winScene.unity
