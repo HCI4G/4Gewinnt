@@ -29,11 +29,15 @@ public class MainMenu : MonoBehaviour {
 		                  
 
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(menuX,2f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.6f*screenHeight), "4 Gewinnt 3D");
+		
+		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
 			MainUI.startGame = true;
 			Application.LoadLevel(1);
 		}
-		if(GUI.Button(new Rect(menuX,3.5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
+		if(GUI.Button(new Rect(menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "Regeln")) {
+		}
+		if(GUI.Button(new Rect(menuX,6.0f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();
 		}
 	}
