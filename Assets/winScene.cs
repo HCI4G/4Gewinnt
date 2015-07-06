@@ -4,6 +4,7 @@ using System.Collections;
 public class winScene : MonoBehaviour {
 
 	public GUISkin _skin = null;
+	 
 
 	private float screenHeight;
 	private float screenWidth;
@@ -30,8 +31,7 @@ public class winScene : MonoBehaviour {
 			Application.LoadLevel(0);
 		}
 		if(GUI.Button(new Rect(buttonWidth,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
-			MainUI.startGame = true;
-			//WinCheck.resetGame();
+		//	WinCheck.resetGame();
 		}
 		if(GUI.Button(new Rect(buttonWidth,5f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();

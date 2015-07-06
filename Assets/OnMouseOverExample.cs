@@ -35,8 +35,10 @@ public class OnMouseOverExample : MonoBehaviour
 
 	public Boolean doWindow0 = false;
 
-	void DoWindow0(int windowID) {
-		if(GUI.Button(new Rect(10, 30, 80, 20), "Klar!!!!")){
+	void DoWindow0() {
+		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.4f*screenHeight), "Richtige Kugel?");
+
+		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Klar!!!!")){
 				doWindow0 = false;
 				MainUI.playerCount++;
                 
@@ -52,7 +54,7 @@ public class OnMouseOverExample : MonoBehaviour
 			WinCheck.getInstance().windowMode = false;
 		}
 
-		if(GUI.Button(new Rect(10, 70, 80,20), "NÖ!!!")){
+		if(GUI.Button(new Rect(menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "NÖ!!!")){
 			doWindow0 = false; 
 			resetCurrentSphere();
 			WinCheck.getInstance().windowMode = false;
@@ -65,8 +67,7 @@ public class OnMouseOverExample : MonoBehaviour
 		}
 
 		if (doWindow0)
-			GUI.Window(0,new Rect(Screen.height/3,Screen.width/3,Screen.height/3,Screen.width/3),DoWindow0,"Richtige Kugel???");
-	
+			DoWindow0 ();
 
 	}
 	
@@ -153,7 +154,6 @@ public class OnMouseOverExample : MonoBehaviour
                 sphere.GetComponent<Renderer>().material.color = Color.cyan;
 
             } 
-			MainUI.startGame = false;
 
 			MainUI.win = true;
 
