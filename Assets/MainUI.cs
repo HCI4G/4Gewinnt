@@ -68,7 +68,7 @@ public class MainUI : MonoBehaviour {
 			WinCheck.getInstance().windowMode = false;
 			WinCheck.getInstance().resetGame();
 		}
-		if(GUI.Button(new Rect(menuX,4.0f*buttonHeight,buttonWidth,buttonHeight), "Regeln")) {
+		if(GUI.Button(new Rect(menuX,4.0f*buttonHeight,buttonWidth,buttonHeight), "Steuerung")) {
 			paused = false;
 			showRules = true;
 		}
@@ -148,9 +148,9 @@ public class MainUI : MonoBehaviour {
 			pauseMenu ();
 
 		if(showRules){
-			GUI.DrawTexture(new Rect(0.1f*screenWidth,0.1f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), rulesBox);
+			GUI.Box(new Rect(0.1f*screenWidth,0.1f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), rulesBox);
 			
-			if(GUI.Button(new Rect (menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "close")){
+			if(GUI.Button(new Rect (menuX,4.75f*buttonHeight,buttonWidth,buttonHeight), "close")){
 				showRules=false;
 				paused = true;
 				WinCheck.getInstance().windowMode = false;
