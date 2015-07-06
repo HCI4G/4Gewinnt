@@ -156,7 +156,6 @@ public class OnMouseOverExample : MonoBehaviour
             } 
 
 			MainUI.win = true;
-
         }
     }
     private void changeStatus(WinCheck.SphereState state)
