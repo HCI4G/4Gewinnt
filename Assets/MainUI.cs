@@ -7,6 +7,7 @@ public class MainUI : MonoBehaviour {
 	public Texture2D rulesBox;
 
 	public GUISkin _skin = null;
+
 	private float screenHeight;
 	private float screenWidth;
 	private float buttonHeight;
@@ -16,8 +17,8 @@ public class MainUI : MonoBehaviour {
 	private static int plr2;
 	private bool paused;
 	private bool showRules;
-	public static bool switchPlr;
-	public static string player; 
+	private bool showWinMenu;
+	private string winner; 
 
 	private float duration = 3; 
 
@@ -30,42 +31,48 @@ public class MainUI : MonoBehaviour {
 		plr2 = 0;
 		screenHeight = Screen.height;
 		screenWidth = Screen.width;
-		buttonHeight = screenHeight * 0.1f;
+		buttonHeight = screenHeight * 0.15f;
 		buttonWidth = screenWidth * 0.4f;
 		menuX = 0.3f * screenWidth;
 		win = false;
 		paused = false;
-		switchPlr = false;
+		showWinMenu = false;
 	}
 
 	void PlayerWho(){
-		if(playerCount%2==0)
+		if (playerCount % 2 == 0) {
 			plr1++;
-		else 
+		} else{ 
 			plr2++;
+		}
 	}
+
+	void WinnerWho(){
+		if (playerCount % 2 == 0) {
+			winner = "Player 1";
+		} else{ 
+			winner = "Player 2";
+		}
+	}
+
 
 	void pauseMenu(){
 		Time.timeScale = 0.0f;
 		WinCheck.getInstance().windowMode = true;
-
-		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.7f*screenHeight),"Glückwunsch du hast gewonnen");
-		
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
+		if(GUI.Button(new Rect(menuX,1.5f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
 			Application.LoadLevel(0);
 		}
-		if(GUI.Button(new Rect(menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {		
-			win = false;
+		if(GUI.Button(new Rect(menuX,2.75f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {		
 			paused=false;
 			WinCheck.getInstance().windowMode = false;
 			WinCheck.getInstance().resetGame();
 		}
-		if(GUI.Button(new Rect(menuX,6f*buttonHeight,buttonWidth,buttonHeight), "Regeln")) {
+		if(GUI.Button(new Rect(menuX,4.0f*buttonHeight,buttonWidth,buttonHeight), "Regeln")) {
 			paused = false;
 			showRules = true;
 		}
-		if(GUI.Button(new Rect(menuX,7.5f*buttonHeight,buttonWidth,buttonHeight), "Zurück")) {
+		if(GUI.Button(new Rect(menuX,5.25f*buttonHeight,buttonWidth,buttonHeight), "Zurück")) {
 			Time.timeScale = 1.0f;
 			paused=false;
 			WinCheck.getInstance().windowMode = false;
@@ -73,52 +80,69 @@ public class MainUI : MonoBehaviour {
 
 	}
 
+	void WinnerMenu(){
+		WinnerWho ();
+		GUI.Box (new Rect (0.80f*menuX, 1.25f * buttonHeight, 1.3f*buttonWidth, 0.5f*screenHeight), "Glückwunsch!!! \n" + winner + ", \n du hast das Spiel gewonnen");
+
+		if (GUI.Button (new Rect (menuX, 3f * buttonHeight, buttonWidth, buttonHeight), "OK")) {
+			PlayerWho();
+			win = false;
+			showWinMenu = true;
+		}
+	}
 
 	void WinMenu () {
 
 		WinCheck.getInstance().windowMode = true;
 		
-		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.6f*screenHeight), "Glückwunsch du hast gewonnen");
+		GUI.Box (new Rect (menuX*0.8f,1.25f*buttonHeight,buttonWidth*1.3f,0.75f*screenHeight), "Wie geht es weiter?");
 
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
+		if(GUI.Button(new Rect(menuX,2.25f*buttonHeight,buttonWidth,buttonHeight), "Haupmenü")) {
 			Application.LoadLevel(0);
 		}
-		if(GUI.Button(new Rect(menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
-			PlayerWho();
-			win = false;
+		if(GUI.Button(new Rect(menuX,3.5f*buttonHeight,buttonWidth,buttonHeight), "Neues Spiel")) {
+			showWinMenu = false;
 			WinCheck.getInstance().windowMode = false;
-			
 			WinCheck.getInstance().resetGame();
 		}
-		if(GUI.Button(new Rect(menuX,6f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
+		if(GUI.Button(new Rect(menuX,4.75f*buttonHeight,buttonWidth,buttonHeight), "Beenden")) {
 			Application.Quit();
 		}
 	}
 
 
-	void PlayerOne(int windowID) {
-		GUI.Label (new Rect(screenHeight*0.15f,30,40,50),""+plr1);
-		}
+	void MainMenu(){
+		Color bgc = GUI.backgroundColor;
 
-	void PlayerTwo(int windowID) {
-		GUI.Label (new Rect(screenHeight*0.15f,30,40,50),""+plr2);
-	}
+		GUI.Box(new Rect(0,0, screenWidth,0.125f*screenHeight), ":");
 
-
-	void OnGUI(){
-	
-		if (win)
-			WinMenu ();
-
-		if(GUI.Button(new Rect(0,0, screenWidth*0.2f, screenHeight * 0.1f), "Menu")){
+		GUI.Label(new Rect( screenWidth*0.27f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),"Player 1         "+plr1);
+		GUI.Label(new Rect( screenWidth*0.55f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),plr2+"          Player 2");
+		
+		if(GUI.Button(new Rect(screenWidth*0.01f,0.025f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f), "Menu")){
 			paused = true;
 		}
-		if(GUI.Button(new Rect(screenWidth*0.8f,0, screenWidth*0.2f, screenHeight * 0.1f), "Reset")){
+		if(GUI.Button(new Rect(screenWidth*0.79f,0.025f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f), "Reset Rotation")){
 			
 		}
-		GUI.Window(0,new Rect( screenWidth*0.25f, 0, screenWidth*0.2f, screenHeight * 0.1f),PlayerOne,"Player 1");
-		GUI.Window(1,new Rect( screenWidth*0.55f, 0, screenWidth*0.2f, screenHeight * 0.1f),PlayerTwo,"Player 2");
+	}
+
+	void OnGUI(){
+
+		if (_skin != null) {
+			GUI.skin = _skin;
+		}
+
+		MainMenu ();
+
+		if (win)
+			WinnerMenu ();
+
+		if (showWinMenu) 
+			WinMenu();
+
+
 
 		if (paused)
 			pauseMenu ();

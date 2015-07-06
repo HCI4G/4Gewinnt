@@ -28,7 +28,7 @@ public class OnMouseOverExample : MonoBehaviour
 		
 		screenHeight = Screen.height;
 		screenWidth = Screen.width;
-		buttonHeight = screenHeight * 0.1f;
+		buttonHeight = screenHeight * 0.15f;
 		buttonWidth = screenWidth * 0.4f;
 		menuX = screenWidth * 0.3f;
 	}
@@ -36,9 +36,10 @@ public class OnMouseOverExample : MonoBehaviour
 	public Boolean doWindow0 = false;
 
 	void DoWindow0() {
-		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.4f*screenHeight), "Richtige Kugel?");
 
-		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Klar!!!!")){
+		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.55f*screenHeight), "Richtige Kugel?");
+
+		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Ja!")){
 				doWindow0 = false;
 				MainUI.playerCount++;
                 
@@ -54,7 +55,7 @@ public class OnMouseOverExample : MonoBehaviour
 			WinCheck.getInstance().windowMode = false;
 		}
 
-		if(GUI.Button(new Rect(menuX,4.5f*buttonHeight,buttonWidth,buttonHeight), "NÖ!!!")){
+		if(GUI.Button(new Rect(menuX,4.25f*buttonHeight,buttonWidth,buttonHeight), "Nein!")){
 			doWindow0 = false; 
 			resetCurrentSphere();
 			WinCheck.getInstance().windowMode = false;
@@ -75,6 +76,7 @@ public class OnMouseOverExample : MonoBehaviour
 	{
 		if (WinCheck.getInstance().windowMode)
 			return;
+
 		if(Input.GetMouseButtonDown(0)){
             currentActiveUserState = WinCheck.getInstance().currentActiveUserState;
             loadSpheresArray();
