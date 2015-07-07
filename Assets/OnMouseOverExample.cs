@@ -144,7 +144,7 @@ public class OnMouseOverExample : MonoBehaviour
     {     
        if (checkConditions())
         {
-            Debug.Log("You've won fucker!");
+          
             //Change the color of the victory line spheres
             foreach (string s in victoryLinePostions)
             {

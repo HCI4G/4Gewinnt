@@ -99,10 +99,15 @@ public class WinCheck : MonoBehaviour {
     }
 
 	public void resetGame(){
-		mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
-		mainPlane.transform.rotation = baseQuaternion;
+        resetRotation();
 		resetAllSphereAttributes();
 	}
+
+    public void resetRotation()
+    {
+        mainPlane.transform.localPosition = new Vector3(-4.5f, 0, 10f); ;
+        mainPlane.transform.rotation = baseQuaternion;
+    }
 
  
 	void Update () {

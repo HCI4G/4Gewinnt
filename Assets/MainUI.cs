@@ -124,7 +124,7 @@ public class MainUI : MonoBehaviour {
 			paused = true;
 		}
 		if(GUI.Button(new Rect(screenWidth*0.79f,0.025f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f), "Reset Rotation")){
-			
+            WinCheck.getInstance().resetRotation();
 		}
 	}
 
