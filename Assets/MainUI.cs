@@ -49,9 +49,9 @@ public class MainUI : MonoBehaviour {
 
 	void WinnerWho(){
 		if (playerCount % 2 == 0) {
-			winner = "Player 1";
+			winner = "Spieler 1";
 		} else{ 
-			winner = "Player 2";
+			winner = "Spieler 2";
 		}
 	}
 
@@ -82,8 +82,15 @@ public class MainUI : MonoBehaviour {
 
 	void WinnerMenu(){
 		WinnerWho ();
-		GUI.Box (new Rect (0.80f*menuX, 1.25f * buttonHeight, 1.3f*buttonWidth, 0.5f*screenHeight), "Glückwunsch!!! \n" + winner + ", \n du hast das Spiel gewonnen");
+		WinCheck.getInstance().windowMode = true;
 
+		Color bc = GUI.backgroundColor;
+		Color cc = GUI.backgroundColor;
+		GUI.contentColor = Color.black;
+		GUI.backgroundColor = Color.clear;
+		GUI.Box (new Rect (0.80f*menuX, 1.25f * buttonHeight, 1.3f*buttonWidth, 0.5f*screenHeight), "Glückwunsch!!! \n" + winner + ", \n du hast das Spiel gewonnen");
+		GUI.backgroundColor = bc;
+		GUI.contentColor = cc;
 		if (GUI.Button (new Rect (menuX, 3f * buttonHeight, buttonWidth, buttonHeight), "OK")) {
 			PlayerWho();
 			win = false;
@@ -93,8 +100,7 @@ public class MainUI : MonoBehaviour {
 
 	void WinMenu () {
 
-		WinCheck.getInstance().windowMode = true;
-		
+
 		GUI.Box (new Rect (menuX*0.8f,1.25f*buttonHeight,buttonWidth*1.3f,0.75f*screenHeight), "Wie geht es weiter?");
 
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
@@ -117,13 +123,13 @@ public class MainUI : MonoBehaviour {
 
 		GUI.Box(new Rect(0,0, screenWidth,0.125f*screenHeight), ":");
 
-		GUI.Label(new Rect( screenWidth*0.27f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),"Player 1         "+plr1);
-		GUI.Label(new Rect( screenWidth*0.55f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),plr2+"          Player 2");
+		GUI.Label(new Rect( screenWidth*0.27f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),"Spieler 1         "+plr1);
+		GUI.Label(new Rect( screenWidth*0.55f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),plr2+"          Spieler 2");
 		
-		if(GUI.Button(new Rect(screenWidth*0.01f,0.025f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f), "Menu")){
+		if(GUI.Button(new Rect(screenWidth*0.01f,0.032f*screenHeight, screenWidth*0.2f, screenHeight * 0.08f), "Menü")){
 			paused = true;
 		}
-		if(GUI.Button(new Rect(screenWidth*0.79f,0.025f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f), "Reset Rotation")){
+		if(GUI.Button(new Rect(screenWidth*0.79f,0.032f*screenHeight, screenWidth*0.2f, screenHeight * 0.08f), "Ausgangsrotation")){
             WinCheck.getInstance().resetRotation();
 		}
 	}
@@ -148,9 +154,10 @@ public class MainUI : MonoBehaviour {
 			pauseMenu ();
 
 		if(showRules){
-			GUI.Box(new Rect(0.1f*screenWidth,0.1f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), rulesBox);
-			
-			if(GUI.Button(new Rect (menuX,4.75f*buttonHeight,buttonWidth,buttonHeight), "close")){
+			GUI.Box(new Rect(0.1f*screenWidth,0.15f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), "Steuerung");
+			GUI.DrawTexture(new Rect(0.2f*screenWidth,0.3f*screenHeight,0.6f*screenWidth, 0.6f*screenHeight), rulesBox);
+
+			if(GUI.Button(new Rect (menuX+1.1f*buttonWidth,0.15f*screenHeight,0.4f*buttonWidth,0.8f*buttonHeight), "schließen")){
 				showRules=false;
 				paused = true;
 				WinCheck.getInstance().windowMode = false;

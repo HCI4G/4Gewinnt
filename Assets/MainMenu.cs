@@ -52,9 +52,10 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		if(showRules){
-			GUI.Box(new Rect(0.1f*screenWidth,0.1f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), rulesBox);
+			GUI.Label (new Rect(menuX,0, buttonWidth, buttonHeight), "Steuerung");
+			GUI.DrawTexture(new Rect(0.1f*screenWidth,0.2f*screenHeight,0.8f*screenWidth, 0.8f*screenHeight), rulesBox);
 
-			if(GUI.Button(new Rect (menuX,4.75f*buttonHeight,buttonWidth,buttonHeight), "close"))
+			if(GUI.Button(new Rect (menuX+buttonWidth,0,buttonWidth*0.6f,buttonHeight), "schließen"))
 			{	showRules=false;
 				menuOn=true;
 			}

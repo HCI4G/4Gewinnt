@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skin: {fileID: 11400000, guid: 1ab8bd6e544051f4db17c2cc04b05c79, type: 2}
-  rulesBox: {fileID: 2800000, guid: d682f575f26eb3349851cf89278f230a, type: 3}
+  rulesBox: {fileID: 2800000, guid: 2290b948586f19b49ba9226b6b557a27, type: 3}
 --- !u!1 &625682297
 GameObject:
   m_ObjectHideFlags: 0
