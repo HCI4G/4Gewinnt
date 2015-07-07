@@ -47,6 +47,7 @@ public class MainUI : MonoBehaviour {
 		}
 	}
 
+
 	void WinnerWho(){
 		if (playerCount % 2 == 0) {
 			winner = "Spieler 1";
@@ -120,8 +121,15 @@ public class MainUI : MonoBehaviour {
 
 	void MainMenu(){
 		Color bgc = GUI.backgroundColor;
-
+		Color highlight = new Color(0.7f,0.3f,0.5f,0.7f);
 		GUI.Box(new Rect(0,0, screenWidth,0.125f*screenHeight), ":");
+
+		GUI.backgroundColor = highlight;
+		if(playerCount%2==0)
+			GUI.Box(new Rect(screenWidth*0.63f, 0.037f*screenHeight, screenWidth*0.1f, screenHeight * 0.05f),"");
+		else
+			GUI.Box(new Rect(screenWidth*0.265f, 0.037f*screenHeight, screenWidth*0.1f, screenHeight * 0.05f),"");
+		GUI.backgroundColor = bgc;
 
 		GUI.Label(new Rect( screenWidth*0.27f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),"Spieler 1         "+plr1);
 		GUI.Label(new Rect( screenWidth*0.55f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),plr2+"          Spieler 2");
