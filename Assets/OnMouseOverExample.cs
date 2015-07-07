@@ -21,9 +21,15 @@ public class OnMouseOverExample : MonoBehaviour
 	private float buttonWidth;
 	private float menuX;
 
+	private bool next;
+	private int n;
+
     private WinCheck.SphereState currentActiveUserState;
     private Color color;
-	
+	public Boolean doWindow0 = false;
+
+	private float alpha; 
+
 	void Start(){
 		
 		screenHeight = Screen.height;
@@ -31,16 +37,27 @@ public class OnMouseOverExample : MonoBehaviour
 		buttonHeight = screenHeight * 0.15f;
 		buttonWidth = screenWidth * 0.4f;
 		menuX = screenWidth * 0.3f;
+		next = false;
 	}
 
-	public Boolean doWindow0 = false;
-
+	void Update(){
+		if (next){
+			alpha -= 0.01f;
+			if (alpha == 0)
+				next = false;
+		}
+		else
+			alpha = 1;
+	}
+	             
 	void DoWindow0() {
 
+		next = false;
 		GUI.Box (new Rect (menuX*0.8f,2f*buttonHeight,buttonWidth*1.3f,0.55f*screenHeight), "Richtige Kugel?");
 
 		if(GUI.Button(new Rect(menuX,3f*buttonHeight,buttonWidth,buttonHeight), "Ja!")){
 				doWindow0 = false;
+
 				MainUI.playerCount++;
                 
                 if (WinCheck.getInstance().currentActiveUserState == WinCheck.SphereState.BLACK)
@@ -53,22 +70,30 @@ public class OnMouseOverExample : MonoBehaviour
                 }
 			initialWinCheck();
 			WinCheck.getInstance().windowMode = false;
+			next = true;
+
 		}
 
 		if(GUI.Button(new Rect(menuX,4.25f*buttonHeight,buttonWidth,buttonHeight), "Nein!")){
 			doWindow0 = false; 
 			resetCurrentSphere();
 			WinCheck.getInstance().windowMode = false;
-
 		}
 	}
 	void OnGUI() {
 		if (_skin != null) {
 			GUI.skin = _skin;
 		}
-
+		Color cc = GUI.contentColor;
+		if (next) {
+			Color text = new Color(1f,1f,1f,alpha);
+			GUI.contentColor = text;
+			GUI.Label (new Rect (0, screenHeight * 0.4f, screenWidth, buttonHeight), "Nächster Spieler");
+		}
+		GUI.contentColor = cc;
 		if (doWindow0)
 			DoWindow0 ();
+
 
 	}
 	
