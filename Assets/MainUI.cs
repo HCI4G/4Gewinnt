@@ -126,9 +126,9 @@ public class MainUI : MonoBehaviour {
 
 		GUI.backgroundColor = highlight;
 		if(playerCount%2==0)
-			GUI.Box(new Rect(screenWidth*0.6f, 0.037f*screenHeight, screenWidth*0.1f, screenHeight * 0.05f),"");
+            GUI.Box(new Rect(screenWidth * 0.55f, 0.035f * screenHeight, screenWidth * 0.2f, screenHeight * 0.05f), "");
 		else
-			GUI.Box(new Rect(screenWidth*0.265f, 0.037f*screenHeight, screenWidth*0.1f, screenHeight * 0.05f),"");
+            GUI.Box(new Rect(screenWidth * 0.27f, 0.035f * screenHeight, screenWidth * 0.2f, screenHeight * 0.05f), "");
 		GUI.backgroundColor = bgc;
 
 		GUI.Label(new Rect( screenWidth*0.27f, 0.035f*screenHeight, screenWidth*0.2f, screenHeight * 0.1f),"Spieler 1         "+plr1);
